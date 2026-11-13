@@ -1,0 +1,221 @@
+customer_id,true_segment,noise_total_spend,noise_total_spend_delta,noise_sessions,noise_sessions_delta,outlier_type,outlier_rule,outlier_columns,is_outlier,missing_avg_order_value,missing_cart_abandonment_rate,error_types
+C0001,Discount Seeker,False,0.0,False,0.0,none,none,none,False,True,True,missing
+C0002,Loyal,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0003,Browser,True,-13.75,True,0.0,none,none,none,False,False,False,noise
+C0004,Loyal,True,-632.6000000000004,True,-1.0,none,none,none,False,False,False,noise
+C0005,Loyal,False,0.0,True,-4.0,none,none,none,False,False,False,noise
+C0006,Browser,False,0.0,True,2.0,none,none,none,False,False,False,noise
+C0007,Inactive,True,-20.399999999999977,False,0.0,none,none,none,False,False,True,missing;noise
+C0008,Inactive,True,-0.2799999999999727,False,0.0,none,none,none,False,False,False,noise
+C0009,Discount Seeker,True,-1441.8199999999997,False,0.0,none,none,none,False,False,False,noise
+C0010,Loyal,False,0.0,True,2.0,none,none,none,False,False,False,noise
+C0011,Discount Seeker,True,178.67000000000007,False,0.0,none,none,none,False,False,False,noise
+C0012,Discount Seeker,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0013,Discount Seeker,False,0.0,False,0.0,data_error,discount_rate_negative,discount_usage_rate,True,False,False,outlier_data_error
+C0014,Inactive,True,-38.15999999999997,False,0.0,none,none,none,False,False,False,noise
+C0015,Browser,True,189.32999999999993,True,6.0,none,none,none,False,False,False,noise
+C0016,Inactive,False,0.0,True,3.0,none,none,none,False,False,False,noise
+C0017,Browser,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0018,Browser,False,0.0,True,-2.0,none,none,none,False,False,False,noise
+C0019,Discount Seeker,False,0.0,False,0.0,none,none,none,False,True,False,missing
+C0020,Browser,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0021,Discount Seeker,False,0.0,True,-3.0,none,none,none,False,False,False,noise
+C0022,Browser,True,38.15999999999997,False,0.0,none,none,none,False,False,False,noise
+C0023,Discount Seeker,True,414.1300000000001,False,0.0,none,none,none,False,False,False,noise
+C0024,Inactive,False,0.0,False,0.0,none,none,none,False,False,True,missing
+C0025,Inactive,True,-77.68999999999994,False,0.0,none,none,none,False,False,False,noise
+C0026,Loyal,False,0.0,True,-4.0,none,none,none,False,False,False,noise
+C0027,Browser,True,-48.74000000000001,True,5.0,none,none,none,False,False,False,noise
+C0028,Loyal,False,0.0,True,-3.0,none,none,none,False,False,False,noise
+C0029,Loyal,True,-2169.949999999999,False,0.0,none,none,none,False,False,False,noise
+C0030,Loyal,False,0.0,True,5.0,none,none,none,False,False,False,noise
+C0031,Inactive,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0032,Browser,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0033,Discount Seeker,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0034,Browser,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0035,Inactive,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0036,Discount Seeker,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0037,Loyal,True,-1856.6400000000012,False,0.0,none,none,none,False,False,False,noise
+C0038,Browser,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0039,Loyal,False,0.0,True,2.0,none,none,none,False,False,False,noise
+C0040,Browser,False,0.0,True,1.0,none,none,none,False,True,False,missing;noise
+C0041,Discount Seeker,False,0.0,True,-1.0,none,none,none,False,False,False,noise
+C0042,Discount Seeker,True,582.44,True,2.0,none,none,none,False,False,False,noise
+C0043,Inactive,True,66.74000000000001,True,0.0,none,none,none,False,False,False,noise
+C0044,Browser,True,-241.23000000000002,False,0.0,none,none,none,False,False,False,noise
+C0045,Discount Seeker,False,0.0,True,-1.0,none,none,none,False,False,False,noise
+C0046,Browser,True,-142.87000000000012,True,2.0,none,none,none,False,False,False,noise
+C0047,Loyal,True,-55.22999999999956,False,0.0,none,none,none,False,False,False,noise
+C0048,Loyal,True,789.5799999999999,True,0.0,none,none,none,False,False,True,missing;noise
+C0049,Loyal,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0050,Discount Seeker,True,-1291.19,True,-3.0,none,none,none,False,False,False,noise
+C0051,Discount Seeker,False,0.0,True,2.0,none,none,none,False,False,False,noise
+C0052,Loyal,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0053,Discount Seeker,False,0.0,True,0.0,none,none,none,False,False,False,noise
+C0054,Inactive,False,0.0,False,0.0,none,none,none,False,False,True,missing
+C0055,Loyal,False,0.0,True,2.0,none,none,none,False,False,False,noise
+C0056,Discount Seeker,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0057,Loyal,True,-4528.800000000001,False,0.0,none,none,none,False,False,True,missing;noise
+C0058,Discount Seeker,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0059,Browser,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0060,Inactive,False,0.0,False,0.0,none,none,none,False,False,True,missing
+C0061,Browser,True,79.43000000000006,True,-1.0,none,none,none,False,False,False,noise
+C0062,Loyal,True,-3499.16,False,0.0,none,none,none,False,False,False,noise
+C0063,Discount Seeker,False,0.0,True,-4.0,none,none,none,False,False,False,noise
+C0064,Browser,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0065,Discount Seeker,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0066,Inactive,False,0.0,True,6.0,none,none,none,False,False,False,noise
+C0067,Discount Seeker,False,0.0,True,5.0,none,none,none,False,False,False,noise
+C0068,Browser,False,0.0,True,3.0,none,none,none,False,False,False,noise
+C0069,Browser,True,-100.3900000000001,True,-1.0,none,none,none,False,False,False,noise
+C0070,Loyal,False,0.0,True,-1.0,none,none,none,False,False,False,noise
+C0071,Browser,True,30.09999999999991,True,4.0,none,none,none,False,False,False,noise
+C0072,Loyal,True,397.5,False,0.0,none,none,none,False,False,False,noise
+C0073,Discount Seeker,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0074,Inactive,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0075,Browser,False,0.0,True,-1.0,none,none,none,False,False,False,noise
+C0076,Loyal,False,0.0,True,-2.0,none,none,none,False,False,False,noise
+C0077,Loyal,False,0.0,False,0.0,business_valid,very_high_frequency,orders_6m;sessions_30d;recency_days;total_spend_6m,True,False,False,outlier_business_valid
+C0078,Inactive,False,0.0,False,0.0,none,none,none,False,False,True,missing
+C0079,Inactive,True,-8.160000000000025,True,6.0,none,none,none,False,False,False,noise
+C0080,Loyal,True,-248.48999999999978,False,0.0,none,none,none,False,False,False,noise
+C0081,Discount Seeker,False,0.0,True,0.0,none,none,none,False,False,False,noise
+C0082,Inactive,False,0.0,False,0.0,none,none,none,False,True,False,missing
+C0083,Discount Seeker,True,391.77,True,6.0,none,none,none,False,False,False,noise
+C0084,Loyal,True,81.40999999999985,True,-5.0,none,none,none,False,False,False,noise
+C0085,Browser,True,-263.0300000000002,True,2.0,none,none,none,False,False,False,noise
+C0086,Browser,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0087,Browser,True,7.050000000000182,False,0.0,none,none,none,False,False,False,noise
+C0088,Inactive,True,23.529999999999973,False,0.0,none,none,none,False,False,False,noise
+C0089,Browser,True,248.41999999999996,False,0.0,none,none,none,False,False,False,noise
+C0090,Loyal,True,603.4000000000005,False,0.0,none,none,none,False,False,True,missing;noise
+C0091,Discount Seeker,True,627.6400000000003,True,7.0,none,none,none,False,False,False,noise
+C0092,Discount Seeker,False,0.0,True,0.0,none,none,none,False,False,False,noise
+C0093,Browser,False,0.0,True,-1.0,none,none,none,False,False,False,noise
+C0094,Inactive,True,-17.480000000000018,False,0.0,none,none,none,False,False,False,noise
+C0095,Browser,True,-33.53000000000003,True,-4.0,none,none,none,False,False,False,noise
+C0096,Browser,False,0.0,True,3.0,none,none,none,False,False,False,noise
+C0097,Browser,True,-116.67999999999984,False,0.0,none,none,none,False,False,False,noise
+C0098,Discount Seeker,True,-72.93000000000029,True,-2.0,none,none,none,False,False,False,noise
+C0099,Inactive,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0100,Discount Seeker,True,-216.77999999999997,True,0.0,none,none,none,False,False,False,noise
+C0101,Inactive,True,18.08999999999999,False,0.0,none,none,none,False,False,False,noise
+C0102,Browser,True,61.35000000000002,False,0.0,none,none,none,False,False,False,noise
+C0103,Browser,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0104,Browser,True,-44.32999999999993,False,0.0,none,none,none,False,True,False,missing;noise
+C0105,Browser,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0106,Discount Seeker,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0107,Browser,False,0.0,False,0.0,none,none,none,False,True,False,missing
+C0108,Loyal,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0109,Inactive,True,117.51999999999998,False,0.0,none,none,none,False,False,False,noise
+C0110,Browser,False,0.0,True,-4.0,none,none,none,False,False,False,noise
+C0111,Inactive,False,0.0,True,5.0,none,none,none,False,True,False,missing;noise
+C0112,Loyal,True,451.1700000000001,True,4.0,none,none,none,False,False,True,missing;noise
+C0113,Inactive,False,0.0,True,0.0,none,none,none,False,False,False,noise
+C0114,Discount Seeker,False,0.0,True,-4.0,none,none,none,False,False,False,noise
+C0115,Inactive,True,39.43000000000001,False,0.0,none,none,none,False,False,False,noise
+C0116,Inactive,False,0.0,True,5.0,none,none,none,False,False,False,noise
+C0117,Loyal,False,0.0,True,-1.0,none,none,none,False,False,False,noise
+C0118,Loyal,False,0.0,False,0.0,business_valid,vip_high_order_value,avg_order_value;total_spend_6m,True,False,False,outlier_business_valid
+C0119,Browser,False,0.0,True,-4.0,none,none,none,False,False,False,noise
+C0120,Loyal,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0121,Inactive,False,0.0,False,0.0,none,none,none,False,False,True,missing
+C0122,Browser,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0123,Discount Seeker,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0124,Loyal,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0125,Inactive,True,-276.67999999999984,False,0.0,none,none,none,False,True,True,missing;noise
+C0126,Loyal,True,-175.90999999999985,True,-6.0,none,none,none,False,False,False,noise
+C0127,Discount Seeker,False,0.0,False,0.0,data_error,return_rate_above_1,return_rate,True,False,False,outlier_data_error
+C0128,Inactive,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0129,Loyal,False,0.0,False,0.0,business_valid,vip_high_order_value,avg_order_value;total_spend_6m,True,False,False,outlier_business_valid
+C0130,Inactive,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0131,Loyal,False,0.0,False,0.0,data_error,recency_negative,recency_days,True,False,False,outlier_data_error
+C0132,Inactive,True,-3.490000000000009,False,0.0,none,none,none,False,False,False,noise
+C0133,Loyal,False,0.0,False,0.0,business_valid,very_high_frequency,orders_6m;sessions_30d;recency_days;total_spend_6m,True,False,False,outlier_business_valid
+C0134,Loyal,True,424.8800000000001,True,-2.0,none,none,none,False,False,False,noise
+C0135,Inactive,True,-36.23000000000002,False,0.0,none,none,none,False,False,True,missing;noise
+C0136,Loyal,False,0.0,True,-5.0,none,none,none,False,False,False,noise
+C0137,Loyal,False,0.0,False,0.0,data_error,sessions_tracking_999,sessions_30d,True,False,False,outlier_data_error
+C0138,Loyal,True,-2381.78,True,-2.0,none,none,none,False,False,False,noise
+C0139,Discount Seeker,False,0.0,True,2.0,none,none,none,False,False,False,noise
+C0140,Browser,True,-58.90999999999997,False,0.0,none,none,none,False,False,True,missing;noise
+C0141,Loyal,False,0.0,True,-1.0,none,none,none,False,False,False,noise
+C0142,Browser,True,-7.5,True,1.0,none,none,none,False,False,False,noise
+C0143,Browser,False,0.0,False,0.0,data_error,spend_unit_x100,total_spend_6m,True,False,False,outlier_data_error
+C0144,Discount Seeker,True,23.390000000000327,True,-2.0,none,none,none,False,False,False,noise
+C0145,Inactive,True,73.09000000000003,True,0.0,none,none,none,False,False,False,noise
+C0146,Discount Seeker,False,0.0,False,0.0,data_error,spend_unit_x100,total_spend_6m,True,False,False,outlier_data_error
+C0147,Discount Seeker,False,0.0,True,6.0,none,none,none,False,False,False,noise
+C0148,Discount Seeker,True,109.32999999999993,False,0.0,none,none,none,False,False,False,noise
+C0149,Loyal,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0150,Browser,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0151,Inactive,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0152,Discount Seeker,True,74.27000000000044,True,-1.0,none,none,none,False,False,False,noise
+C0153,Discount Seeker,True,-4.0200000000000955,False,0.0,none,none,none,False,False,False,noise
+C0154,Browser,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0155,Inactive,True,130.4000000000001,True,1.0,none,none,none,False,False,False,noise
+C0156,Loyal,True,-546.75,False,0.0,none,none,none,False,False,False,noise
+C0157,Inactive,False,0.0,False,0.0,none,none,none,False,True,False,missing
+C0158,Loyal,True,-89.33999999999924,False,0.0,none,none,none,False,True,False,missing;noise
+C0159,Discount Seeker,True,-325.3800000000001,True,-5.0,none,none,none,False,False,False,noise
+C0160,Discount Seeker,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0161,Inactive,True,238.44000000000005,True,5.0,none,none,none,False,False,False,noise
+C0162,Discount Seeker,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0163,Inactive,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0164,Discount Seeker,False,0.0,True,-2.0,none,none,none,False,False,True,missing;noise
+C0165,Discount Seeker,True,143.59000000000015,True,3.0,none,none,none,False,False,False,noise
+C0166,Inactive,True,-379.78999999999996,False,0.0,none,none,none,False,True,False,missing;noise
+C0167,Discount Seeker,False,0.0,True,0.0,none,none,none,False,False,False,noise
+C0168,Browser,True,-14.410000000000082,False,0.0,none,none,none,False,False,False,noise
+C0169,Discount Seeker,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0170,Loyal,True,750.5699999999997,False,0.0,none,none,none,False,False,False,noise
+C0171,Discount Seeker,False,0.0,True,2.0,none,none,none,False,False,False,noise
+C0172,Browser,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0173,Inactive,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0174,Inactive,True,-6.299999999999983,True,2.0,none,none,none,False,False,False,noise
+C0175,Loyal,True,-538.3199999999997,False,0.0,none,none,none,False,False,False,noise
+C0176,Loyal,False,0.0,True,-1.0,none,none,none,False,False,False,noise
+C0177,Browser,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0178,Inactive,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0179,Discount Seeker,False,0.0,True,4.0,none,none,none,False,True,False,missing;noise
+C0180,Loyal,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0181,Discount Seeker,True,-232.64000000000033,True,-2.0,none,none,none,False,False,False,noise
+C0182,Discount Seeker,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0183,Discount Seeker,True,116.45000000000027,False,0.0,none,none,none,False,True,False,missing;noise
+C0184,Inactive,False,0.0,True,3.0,none,none,none,False,False,False,noise
+C0185,Browser,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0186,Loyal,False,0.0,True,-1.0,none,none,none,False,False,False,noise
+C0187,Inactive,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0188,Browser,True,-54.51999999999998,True,1.0,none,none,none,False,False,False,noise
+C0189,Inactive,True,-37.89999999999998,False,0.0,none,none,none,False,False,False,noise
+C0190,Browser,True,-241.13,False,0.0,none,none,none,False,False,False,noise
+C0191,Discount Seeker,True,14.800000000000182,True,-1.0,none,none,none,False,False,False,noise
+C0192,Discount Seeker,False,0.0,False,0.0,data_error,tenure_negative,tenure_months,True,False,False,outlier_data_error
+C0193,Browser,True,-26.569999999999936,False,0.0,none,none,none,False,True,False,missing;noise
+C0194,Loyal,True,-525.3499999999985,False,0.0,none,none,none,False,False,False,noise
+C0195,Loyal,False,0.0,True,0.0,none,none,none,False,False,False,noise
+C0196,Loyal,False,0.0,True,-3.0,none,none,none,False,True,False,missing;noise
+C0197,Loyal,False,0.0,False,0.0,business_valid,vip_high_order_value,avg_order_value;total_spend_6m,True,False,False,outlier_business_valid
+C0198,Discount Seeker,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0199,Inactive,True,8.730000000000018,False,0.0,none,none,none,False,False,False,noise
+C0200,Loyal,True,989.2700000000004,True,1.0,none,none,none,False,False,False,noise
+C0201,Browser,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0202,Discount Seeker,False,0.0,True,0.0,none,none,none,False,False,True,missing;noise
+C0203,Discount Seeker,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0204,Loyal,True,1981.1500000000015,True,-2.0,none,none,none,False,False,False,noise
+C0205,Browser,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0206,Loyal,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0207,Discount Seeker,False,0.0,True,0.0,none,none,none,False,False,False,noise
+C0208,Discount Seeker,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0209,Discount Seeker,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0210,Inactive,True,32.289999999999964,False,0.0,none,none,none,False,False,False,noise
+C0211,Browser,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0212,Discount Seeker,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0213,Browser,True,-72.41999999999985,False,0.0,none,none,none,False,False,False,noise
+C0214,Loyal,True,-340.40999999999985,False,0.0,none,none,none,False,False,False,noise
+C0215,Browser,True,-61.43000000000001,False,0.0,none,none,none,False,False,False,noise
+C0216,Inactive,False,0.0,False,0.0,none,none,none,False,False,True,missing
+C0217,Inactive,False,0.0,False,0.0,none,none,none,False,False,False,clean
+C0218,Inactive,False,0.0,True,0.0,none,none,none,False,False,True,missing;noise
+C0219,Inactive,True,-33.99000000000001,False,0.0,none,none,none,False,False,False,noise
+C0220,Browser,False,0.0,False,0.0,none,none,none,False,False,False,clean
