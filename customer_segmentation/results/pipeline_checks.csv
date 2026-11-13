@@ -8,6 +8,6 @@ check,status,detail
 7. Feature matrices: no NaN / infinity,PASS,"customers_prepared.csv, A_baseline, B_processed: all finite"
 8. No ID or simulation label in K-Means matrices,PASS,no customer_id / true_segment / metadata columns
 "9. Same feature space, column order and scaling in both branches",PASS,20 identical columns; 184 records with identical raw values map identically
-"10. CSV files, figures and result tables saved",PASS,"11 CSV files, 11 figures, 6 generated LaTeX files present and non-empty"
+"10. CSV files, figures and result tables saved",PASS,"11 CSV files, 11 figures, 9 generated LaTeX files present and non-empty"
 11. Re-run with the same seed reproduces data and clusters,PASS,simulation regenerated with seed 42 matches saved CSV/metadata; K-Means labels identical on refit for 3 matrices x 2 experiments
-12. Report values generated from and matching experiment results,PASS,82 macros used in report.tex all defined; 33 values match saved files; 16 qualitative claims hold (11 recomputed from saved files)
+12. Report values generated from and matching experiment results,PASS,85 macros used in report.tex all defined; 33 values match saved files; 16 qualitative claims hold (11 recomputed from saved files)

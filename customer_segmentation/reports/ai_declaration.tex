@@ -94,7 +94,19 @@ Bỏ \texttt{total\_spend\_6m}; log1p; RobustScaler; OneHotEncoder; PCA để tr
 Tách bộ biến đổi thành fit/transform dùng chung cho hai nhánh; khảo sát $k$; K-Means hai nhánh và tham chiếu sạch; ARI sau phân cụm; hồ sơ cụm, đặt tên, chiến lược tiếp thị. & \texttt{0760e36} \\
 \addlinespace
 9 & Yêu cầu kiểm tra pipeline theo mục 11, viết báo cáo LaTeX, tệp khai báo riêng, sau đó chạy \texttt{/code-review} và rà soát. &
-Thêm 12 hàm kiểm chứng vào notebook; sinh macro và bảng LaTeX từ kết quả; sửa một giá trị làm tròn sai trong nhận xét câu e (1.897 $\rightarrow$ 1.896); viết \texttt{report.tex}, tệp này và \texttt{README.md}; chạy hai vòng rà soát mã và sửa các phát hiện (Mục~\ref{sec:review}). & \texttt{5b244f7}, \texttt{b80e3f6}, commit cuối \\
+Thêm 12 hàm kiểm chứng vào notebook; sinh macro và bảng LaTeX từ kết quả; sửa một giá trị làm tròn sai trong nhận xét câu e (1.897 $\rightarrow$ 1.896); viết \texttt{report.tex}, tệp này và \texttt{README.md}; chạy hai vòng rà soát mã và sửa các phát hiện (Mục~\ref{sec:review}). & \texttt{5b244f7}, \texttt{b80e3f6}, \texttt{9495d2b} \\
+\addlinespace
+10 & Báo lỗi định dạng khi biên dịch bằng XeLaTeX. &
+Không biên dịch thử được (máy không có LaTeX, lệnh tải trình biên dịch bị chặn). Bỏ babel-vietnamese, nạp font TeX Gyre Termes theo tên tệp, sửa đường dẫn cho Overleaf. & \texttt{11fe3f5} \\
+\addlinespace
+11 & Yêu cầu trợ lý đóng vai giáo viên nghiêm khắc chấm điểm và chỉ ra hạn chế của báo cáo. &
+Ước lượng khoảng 7.5/10; liệt kê lỗi nặng (thiếu report.md, một câu kết luận sai về điền khuyết, thiếu bảng so sánh trước/sau, hồ sơ cụm thiếu chi tiêu trung bình, thiếu chiến lược cho $k$ chính), các hạn chế phương pháp và trình bày. & — \\
+\addlinespace
+12 & Yêu cầu xuất nhật ký hội thoại dạng Markdown. &
+Tạo \texttt{reports/conversation\_log.md} (tệp này sau đó không còn trong thư mục dự án và không được commit). & — \\
+\addlinespace
+13 & Yêu cầu sửa phần tiền xử lý và các vấn đề báo cáo liên quan. &
+Sửa câu ``không kém hơn median imputation'' thành ``kém hơn một chút'' và thêm kiểm tra tự động; thêm ba bảng so sánh trước/sau tiền xử lý vào báo cáo; nêu rõ hạn chế của đánh giá điền khuyết và các giả định nghiệp vụ. & (commit cuối) \\
 \bottomrule
 \end{longtable}
 

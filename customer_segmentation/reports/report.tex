@@ -195,20 +195,49 @@ Quy trình chỉ dùng \texttt{customers\_corrupted.csv}, gồm bốn bước:
 \end{itemize}
 
 \paragraph{Kết quả.}
+Bảng~\ref{tab:prep-overview} và \ref{tab:prep-columns} so sánh dữ liệu trước và sau tiền xử lý về số bản ghi, giá trị thiếu, giá trị không hợp lệ và số ô bị điều chỉnh. Bảng~\ref{tab:prep-stats} so sánh thống kê của các thuộc tính chịu tác động.
 \begin{itemize}
   \item \InvalidCells{} ô không hợp lệ được chuyển thành NaN, đúng là \OutlierError{} ngoại lai lỗi; không khách VIP nào bị coi là lỗi.
-  \item Tổng cộng \ImputedCells{} ô được điều chỉnh, ghi trong \texttt{results/preprocessing\_changes.csv}.
+  \item Tổng cộng \ImputedCells{} ô được điều chỉnh (\AdjustedCellsPct\% số ô thuộc tính), ghi từng ô trong \texttt{results/preprocessing\_changes.csv}. Số bản ghi giữ nguyên \NCustomers.
   \item Số ô thiếu giảm từ \MissingCellsBefore{} về 0; không còn bản ghi vi phạm quy tắc.
-  \item Độ lệch chuẩn của số phiên giảm từ \SessionsStdBefore{} xuống \SessionsStdAfter; của chi tiêu từ \SpendStdBefore{} xuống \SpendStdAfter.
+  \item Độ lệch chuẩn của số phiên giảm từ \SessionsStdBefore{} xuống \SessionsStdAfter; của chi tiêu từ \SpendStdBefore{} xuống \SpendStdAfter. Trung vị của các thuộc tính gần như không đổi.
   \item Sau khi sửa, IQR $k=3$ còn đánh dấu \PreIqrThreeRecords{} bản ghi: \OutlierBusiness{} ngoại lai nghiệp vụ được giữ nguyên, và \PreIqrThreeNotInjected{} bản ghi có giá trị cao tự nhiên.
   \item Còn \SpendRatioDeviating{} bản ghi có chi tiêu lệch hơn 1\% so với tích số đơn và giá trị đơn, tức nhiễu vẫn tồn tại trong dữ liệu.
 \end{itemize}
 
+\begin{table}[H]
+  \centering\small
+  \caption{Tổng quan trước và sau tiền xử lý.}
+  \label{tab:prep-overview}
+  \begin{adjustbox}{max width=\textwidth}\generated{table_preprocessing_overview.tex}\end{adjustbox}
+\end{table}
+
+\begin{table}[H]
+  \centering\small
+  \caption{Giá trị thiếu, giá trị không hợp lệ và số ô điều chỉnh theo từng thuộc tính bị tác động.}
+  \label{tab:prep-columns}
+  \begin{adjustbox}{max width=\textwidth}\generated{table_preprocessing_columns.tex}\end{adjustbox}
+\end{table}
+
+\begin{table}[H]
+  \centering\small
+  \caption{Thống kê các thuộc tính bị tác động trước (corrupted) và sau tiền xử lý.}
+  \label{tab:prep-stats}
+  \begin{adjustbox}{max width=\textwidth}\generated{table_preprocessing_stats.tex}\end{adjustbox}
+\end{table}
+
 \paragraph{Nhận xét.}
+\begin{itemize}
+  \item Các giá trị cực đoan do lỗi (999 phiên, chi tiêu $\times 100$, tỷ lệ ngoài $[0,1]$) bị loại hẳn, nên độ lệch chuẩn và giá trị lớn nhất giảm mạnh. Độ lệch phải của chi tiêu vẫn còn, vì các khách VIP hợp lệ được giữ lại; độ lệch này được xử lý bằng biến đổi log ở câu d.
+  \item Tiền xử lý không loại bỏ được nhiễu Gaussian. Các giá trị bị nhiễu nằm trong miền hợp lệ và không phân biệt được với giá trị thật nếu không có dữ liệu gốc.
+\end{itemize}
+
 Đánh giá sau xử lý dùng dữ liệu gốc, chỉ để đo, không để chỉnh quy trình:
 \begin{itemize}
-  \item Điền \texttt{avg\_order\_value} theo định nghĩa cho MAE \MaeAovMethod, so với \MaeAovMedian{} nếu dùng trung vị toàn cục.
-  \item Điền \texttt{cart\_abandonment\_rate} theo nhóm số đơn cho MAE \MaeCartMethod, so với \MaeCartMedian{} của trung vị toàn cục. Giả thuyết rằng trung vị có điều kiện chính xác hơn \emph{không được ủng hộ}. Phương pháp vẫn được giữ, vì đã chọn trước khi đánh giá và không kém hơn median imputation.
+  \item Điền \texttt{avg\_order\_value} theo định nghĩa cho MAE \MaeAovMethod, so với \MaeAovMedian{} nếu dùng trung vị toàn cục (\MaeAovCells{} ô).
+  \item Điền \texttt{cart\_abandonment\_rate} theo nhóm số đơn cho MAE \MaeCartMethod, \emph{kém hơn một chút} so với \MaeCartMedian{} của trung vị toàn cục (\MaeCartCells{} ô). Giả thuyết rằng trung vị có điều kiện chính xác hơn \emph{không được ủng hộ}. Mức chênh quá nhỏ và số ô quá ít để kết luận phương pháp nào tốt hơn. Phương pháp vẫn được giữ vì đã chọn trước khi đánh giá: đổi phương pháp sau khi nhìn sai số so với dữ liệu gốc sẽ là dùng dữ liệu gốc để điều chỉnh quy trình.
+  \item Đánh giá này chỉ dựa trên vài chục ô, nên chỉ mang tính tham khảo.
+  \item Việc coi \texttt{total\_spend\_6m} là trường sai khi ba trường không nhất quán, cùng các ngưỡng nghiệp vụ (300 phiên, tỷ lệ $[0.5, 2]$), là những giả định không kiểm chứng được trên dữ liệu.
 \end{itemize}
 
 \begin{figure}[H]
@@ -338,7 +367,7 @@ Tiêu chí không giám sát ưu tiên $k=\KMain$. Việc dùng $k=4$ cho tiếp
 
 Tác động của từng vấn đề dữ liệu và của tiền xử lý:
 \begin{itemize}
-  \item \textbf{Giá trị thiếu} chặn K-Means chạy trực tiếp. Điền trung vị toàn cục ở baseline còn tạo thêm mâu thuẫn giữa các trường của cùng một khách. Điền theo quan hệ định nghĩa giảm mạnh sai số với \texttt{avg\_order\_value}. Điền theo nhóm không cải thiện được \texttt{cart\_abandonment\_rate}.
+  \item \textbf{Giá trị thiếu} chặn K-Means chạy trực tiếp. Điền trung vị toàn cục ở baseline còn tạo thêm mâu thuẫn giữa các trường của cùng một khách. Điền theo quan hệ định nghĩa giảm mạnh sai số với \texttt{avg\_order\_value}. Điền theo nhóm không cải thiện được \texttt{cart\_abandonment\_rate}: sai số kém hơn trung vị toàn cục một chút.
   \item \textbf{Nhiễu} làm mờ ranh giới giữa các cụm vốn đã chồng lấn và không thể loại bỏ khi không biết giá trị thật. Quy trình chỉ hạn chế ảnh hưởng của nhiễu bằng thống kê bền vững và biến đổi log.
   \item \textbf{Ngoại lai lỗi} có tác động lớn nhất: một bản ghi đủ để chiếm riêng một cụm, làm lệch lựa chọn $k$ và làm méo hồ sơ cụm. Quy tắc nghiệp vụ phát hiện và sửa được toàn bộ \OutlierError{} lỗi.
   \item \textbf{Ngoại lai hợp lệ} được giữ lại; biến đổi log và RobustScaler đủ để chúng không tạo cụm riêng.
