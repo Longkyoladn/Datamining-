@@ -1,0 +1,126 @@
+% Khai báo sử dụng AI và công cụ. Biên dịch bằng XeLaTeX: xelatex ai_declaration.tex
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage[vietnamese]{babel}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\setmainfont{Latin Modern Roman}
+\setlist{itemsep=2pt, topsep=4pt}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\title{Khai báo sử dụng AI và công cụ\\
+\large Bài thực nghiệm giữa kỳ — Phân cụm khách hàng sàn thương mại điện tử}
+\author{Mã sinh viên: 24022391}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Công cụ AI}
+
+\begin{itemize}
+  \item \textbf{Trợ lý:} Claude Code (Anthropic), chạy dưới dạng tiện ích trong Visual Studio Code, có quyền đọc/ghi tệp trong thư mục dự án, chạy lệnh PowerShell/Python và thao tác git.
+  \item \textbf{Mô hình:} Claude Sonnet 5.5 ở lượt đầu tiên (đọc và lưu các quy tắc). Sau đó sinh viên chuyển sang Claude Opus 5.5 bằng lệnh \texttt{/model opus}, và mô hình này được dùng cho toàn bộ phần thực hiện câu a–e, kiểm chứng và báo cáo.
+  \item \textbf{Bộ nhớ của trợ lý:} các quy tắc chung của đề bài (vai trò, thông số, công nghệ, cấu trúc đầu ra, phong cách, kiểm chứng, báo cáo, quy trình) được lưu vào bộ nhớ dự án của Claude Code để áp dụng xuyên suốt.
+\end{itemize}
+
+\section{Phạm vi hỗ trợ}
+
+\begin{longtable}{P{0.3\textwidth}P{0.64\textwidth}}
+\toprule
+\textbf{Bên thực hiện} & \textbf{Nội dung} \\
+\midrule
+\endhead
+Sinh viên &
+Cung cấp đề bài và các yêu cầu theo từng mục (1–13); đặt các ràng buộc (không ngụy tạo số liệu, không dùng nhãn giả lập khi huấn luyện, commit theo từng phần); chọn cách làm khi được hỏi (push trực tiếp lên nhánh \texttt{main}); yêu cầu kiểm chứng, báo cáo LaTeX, khai báo và rà soát mã. \\
+\addlinespace
+Trợ lý AI &
+Đề xuất thiết kế dữ liệu, cơ chế lỗi và quy trình xử lý; viết toàn bộ mã Python trong notebook; chạy notebook, đọc kết quả và sửa lỗi phát sinh; viết nhận xét sau khi có kết quả chạy; viết báo cáo LaTeX và tệp khai báo này; tạo commit và push lên GitHub theo yêu cầu. \\
+\bottomrule
+\end{longtable}
+
+Các nguyên tắc đã áp dụng trong quá trình làm:
+\begin{itemize}
+  \item Số liệu trong notebook và báo cáo đều lấy trực tiếp từ kết quả chạy. Báo cáo dùng macro LaTeX do notebook sinh ra, và notebook có kiểm tra tự động đối chiếu macro với các tệp kết quả.
+  \item Các kết quả trái kỳ vọng được giữ nguyên và giải thích, ví dụ: điền khuyết theo nhóm không tốt hơn trung vị toàn cục; Davies–Bouldin xấu hơn sau tiền xử lý ở $k=4$.
+  \item Dữ liệu gốc và metadata chỉ dùng để đánh giá sau khi xử lý xong, không dùng để chọn phương pháp hay tham số.
+\end{itemize}
+
+\section{Lịch sử hội thoại chính}
+
+Bảng dưới tóm tắt các lượt trao đổi chính giữa sinh viên và trợ lý theo thứ tự thời gian (ngày 13/11/2026). Mã commit tham chiếu kho \texttt{github.com/Longkyoladn/Datamining-}.
+
+\begin{longtable}{P{0.04\textwidth}P{0.38\textwidth}P{0.42\textwidth}P{0.08\textwidth}}
+\toprule
+\textbf{\#} & \textbf{Yêu cầu của sinh viên} & \textbf{Trợ lý thực hiện} & \textbf{Commit} \\
+\midrule
+\endhead
+1 & Gửi các quy tắc chung (mục 1–3, 9–13), yêu cầu đọc và lưu, chưa tác động tới dự án. &
+Lưu quy tắc vào bộ nhớ; nhận thấy mục 4–8 chưa có và hỏi lại. & — \\
+\addlinespace
+2 & Xác nhận mục 4–8 sẽ được gửi theo từng phần; chuyển mô hình sang Opus; gửi mục 4 (câu a). &
+Kiểm tra môi trường Python; thiết kế 4 nhóm tiềm ẩn và cơ chế lỗi; viết, chạy notebook câu a; lưu dữ liệu original, corrupted, metadata; kiểm tra bằng \texttt{assert} và kiểm tra tái lập. & \texttt{205ade0} \\
+\addlinespace
+3 & Gửi mục 5 (câu b). &
+EDA trên dữ liệu corrupted; quy tắc nghiệp vụ, IQR, đánh giá khả năng phát hiện; phân tích 4 vấn đề ảnh hưởng K-Means. & \texttt{6213fab} \\
+\addlinespace
+4 & Yêu cầu commit lên git theo từng phần. &
+Hỏi nhánh đích; sinh viên chọn push trực tiếp lên \texttt{main}. Tách commit câu a (notebook chỉ gồm câu a) và câu b. & (2 commit trên) \\
+\addlinespace
+5 & Hỏi dữ liệu ban đầu, dữ liệu có nhiễu/ngoại lai và dữ liệu sau xử lý đã có chưa, được xử lý thế nào. &
+Giải thích: dữ liệu original/corrupted đã có; dữ liệu preprocessed/prepared thuộc câu c–d, chưa tạo. & — \\
+\addlinespace
+6 & Gửi mục 6 (câu c). &
+Giá trị không hợp lệ $\rightarrow$ NaN; điền khuyết; IQR sau sửa; không xóa bản ghi; bảng so sánh trước/sau; đánh giá sai số điền khuyết sau xử lý. & \texttt{1470fe9} \\
+\addlinespace
+7 & Gửi mục 7 (câu d). &
+Bỏ \texttt{total\_spend\_6m}; log1p; RobustScaler; OneHotEncoder; PCA để trực quan hóa; lưu ma trận đặc trưng. & \texttt{1230455} \\
+\addlinespace
+8 & Gọi \texttt{/code-review} rồi ngắt; gửi mục 8 (câu e). &
+Tách bộ biến đổi thành fit/transform dùng chung cho hai nhánh; khảo sát $k$; K-Means hai nhánh và tham chiếu sạch; ARI sau phân cụm; hồ sơ cụm, đặt tên, chiến lược tiếp thị. & \texttt{0760e36} \\
+\addlinespace
+9 & Yêu cầu kiểm tra pipeline theo mục 11, viết báo cáo LaTeX, tệp khai báo riêng, sau đó chạy \texttt{/code-review} và rà soát. &
+Thêm 12 hàm kiểm chứng vào notebook; sinh macro và bảng LaTeX từ kết quả; sửa một giá trị làm tròn sai trong nhận xét câu e (1.897 $\rightarrow$ 1.896); viết \texttt{report.tex}, tệp này và \texttt{README.md}; chạy rà soát mã (Mục~\ref{sec:review}). & (commit cuối) \\
+\bottomrule
+\end{longtable}
+
+\section{Công cụ và phiên bổ sung}
+
+\begin{longtable}{P{0.3\textwidth}P{0.64\textwidth}}
+\toprule
+\textbf{Công cụ / phiên} & \textbf{Cách sử dụng} \\
+\midrule
+\endhead
+Python 3.13.9 & numpy 2.5.3, pandas 2.3.3, matplotlib 3.10.7, seaborn 0.13.2, scikit-learn 1.7.2. scipy 1.16.3 có trong môi trường nhưng không được dùng. \\
+\addlinespace
+Jupyter kernel & ipykernel 6.30.1, jupyter\_client 8.6.3. Môi trường không có nbconvert/nbclient nên trợ lý dùng một script nhỏ dựa trên \texttt{jupyter\_client} để chạy notebook từ đầu đến cuối trong kernel mới và ghi lại output. \\
+\addlinespace
+Script dựng notebook & Trợ lý soạn nội dung các cell trong một script Python tạm (\texttt{nbformat}) ngoài thư mục dự án, rồi sinh ra \texttt{customer\_segmentation.ipynb}. Script này không nằm trong kho mã; notebook là sản phẩm chính và chạy độc lập. \\
+\addlinespace
+Kiểm tra tái lập ngoài notebook & Sau mỗi phần, notebook được chạy lại và mã băm (hash) của các tệp CSV được so sánh với lần chạy trước; các tệp trùng khớp. \\
+\addlinespace
+git / GitHub & Mỗi câu một commit, push lên nhánh \texttt{main} theo lựa chọn của sinh viên. \\
+\addlinespace
+Bộ nhớ Claude Code & Lưu các quy tắc chung của đề bài và phong cách viết để áp dụng cho mọi phần. \\
+\addlinespace
+\texttt{/code-review} (lần 1) & Sinh viên gọi trước câu e rồi ngắt; không có kết quả rà soát. \\
+\addlinespace
+\texttt{/code-review} (lần 2) & Chạy sau khi hoàn thành báo cáo; kết quả ở Mục~\ref{sec:review}. \\
+\addlinespace
+LaTeX & Máy thực hiện không có trình biên dịch LaTeX. Các tệp \texttt{.tex} được kiểm tra cú pháp bằng script (cân bằng ngoặc, cặp \texttt{begin}/\texttt{end}, macro được định nghĩa) nhưng chưa được biên dịch thành PDF trong phiên này. \\
+\bottomrule
+\end{longtable}
+
+\section{Kết quả rà soát mã}
+\label{sec:review}
+
+% Mục này được cập nhật sau khi chạy /code-review.
+Đang cập nhật.
+
+\end{document}

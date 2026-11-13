@@ -1,0 +1,13 @@
+check,status,detail
+"1. Original data: 220 records, 12 input features",PASS,"220 records, 12 input features"
+2. >= 2 attributes with missing values (corrupted),PASS,"avg_order_value: 15, cart_abandonment_rate: 18"
+3. >= 2 numeric attributes with added noise,PASS,"total_spend_6m: 88 values changed, sessions_30d: 74 values changed"
+4. >= 11 distinct customer_id with injected outliers,PASS,12 distinct customer_id
+5. Original and corrupted aligned by customer_id,PASS,one-to-one merge on customer_id: 220 rows
+6. Preprocessed data: no NaN in clustering fields,PASS,no NaN in the 12 input features
+7. Feature matrices: no NaN / infinity,PASS,"customers_prepared.csv, A_baseline, B_processed: all finite"
+8. No ID or simulation label in K-Means matrices,PASS,no customer_id / true_segment / metadata columns
+"9. Same feature space, column order and scaling in both branches",PASS,20 identical columns; 184 records with identical raw values map identically
+"10. CSV files, figures and result tables saved",PASS,7 CSV files and 11 figures present and non-empty
+11. Re-run with the same seed reproduces data and clusters,PASS,simulation regenerated with seed 42 matches saved CSV/metadata; K-Means labels identical on refit
+12. Report values generated from and matching experiment results,PASS,96 macros written; clustering metrics and key counts match saved CSV files
