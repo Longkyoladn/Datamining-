@@ -1,10 +1,12 @@
-% Biên dịch bằng XeLaTeX (ví dụ: xelatex report.tex) từ thư mục reports/.
+% Biên dịch bằng XeLaTeX (xelatex report.tex), chạy hai lần để cập nhật tham chiếu.
+% Đặt được ở hai cách: biên dịch trong thư mục reports/, hoặc trên Overleaf với gốc dự án là customer_segmentation/
+% (khi đó đặt report.tex làm Main document).
 % Mọi số liệu thực nghiệm được lấy từ generated/values.tex và generated/table_*.tex,
 % do notebooks/customer_segmentation.ipynb sinh ra; không gõ tay số liệu trong tệp này.
 \documentclass[11pt,a4paper]{article}
 
+% Không dùng babel-vietnamese: gói này ép bảng mã T5 của pdfLaTeX, gây lỗi font với XeLaTeX.
 \usepackage{fontspec}
-\usepackage[vietnamese]{babel}
 \usepackage[margin=2.2cm]{geometry}
 \usepackage{graphicx}
 \usepackage{adjustbox}
@@ -15,11 +17,22 @@
 \usepackage{amsmath}
 \usepackage[hidelinks]{hyperref}
 
-\setmainfont{Latin Modern Roman}
-\graphicspath{{../figures/}}
+% Nạp font theo tên tệp (có sẵn trong TeX Live/Overleaf, đủ dấu tiếng Việt), không phụ thuộc fontconfig.
+\setmainfont{texgyretermes}[
+  Extension = .otf,
+  UprightFont = *-regular,
+  BoldFont = *-bold,
+  ItalicFont = *-italic,
+  BoldItalicFont = *-bolditalic]
+\renewcommand{\figurename}{Hình}
+\renewcommand{\tablename}{Bảng}
+\setlength{\emergencystretch}{3em}
+\graphicspath{{../figures/}{figures/}}
 \setlist{itemsep=2pt, topsep=4pt}
 
-\input{generated/values.tex}
+% Tệp sinh tự động nằm ở generated/ (biên dịch trong reports/) hoặc reports/generated/ (gốc là customer_segmentation/).
+\newcommand{\generated}[1]{\IfFileExists{generated/#1}{\input{generated/#1}}{\input{reports/generated/#1}}}
+\generated{values.tex}
 
 \title{Phân cụm khách hàng sàn thương mại điện tử\\
 \large Bài thực nghiệm giữa kỳ — Phân tích và Khai phá dữ liệu}
@@ -140,7 +153,7 @@ Khả năng phát hiện \OutlierIds{} ngoại lai được trình bày ở Bả
   \centering\small
   \caption{Khả năng phát hiện ngoại lai trên dữ liệu corrupted (đối chiếu metadata sau khi phát hiện).}
   \label{tab:detection}
-  \begin{adjustbox}{max width=\textwidth}\input{generated/table_detection.tex}\end{adjustbox}
+  \begin{adjustbox}{max width=\textwidth}\generated{table_detection.tex}\end{adjustbox}
 \end{table}
 
 \begin{figure}[H]
@@ -255,14 +268,14 @@ Silhouette và Davies–Bouldin của nhánh B cùng tốt nhất ở $k=\KMain$
   \centering\small
   \caption{Khảo sát số cụm (Sil.: Silhouette; DB: Davies–Bouldin).}
   \label{tab:ksurvey}
-  \begin{adjustbox}{max width=\textwidth}\input{generated/table_k_survey.tex}\end{adjustbox}
+  \begin{adjustbox}{max width=\textwidth}\generated{table_k_survey.tex}\end{adjustbox}
 \end{table}
 
 \begin{table}[H]
   \centering\small
   \caption{Kết quả phân cụm của hai nhánh và tham chiếu dữ liệu sạch.}
   \label{tab:metrics}
-  \begin{adjustbox}{max width=\textwidth}\input{generated/table_metrics.tex}\end{adjustbox}
+  \begin{adjustbox}{max width=\textwidth}\generated{table_metrics.tex}\end{adjustbox}
 \end{table}
 
 \paragraph{Kết quả và nhận xét.}
@@ -294,14 +307,14 @@ Với $k=\KMain$, cụm thứ hai gộp các kiểu khách cần cách tiếp c�
   \centering\small
   \caption{Hồ sơ cụm nhánh B, $k=\KMain$ (tiền: nghìn đồng; giảm giá, bỏ giỏ: tỷ lệ trung bình).}
   \label{tab:k2}
-  \begin{adjustbox}{max width=\textwidth}\input{generated/table_profiles_B_main.tex}\end{adjustbox}
+  \begin{adjustbox}{max width=\textwidth}\generated{table_profiles_B_main.tex}\end{adjustbox}
 \end{table}
 
 \begin{table}[H]
   \centering\small
   \caption{Hồ sơ cụm nhánh B, $k=4$.}
   \label{tab:k4}
-  \begin{adjustbox}{max width=\textwidth}\input{generated/table_profiles_B_k4.tex}\end{adjustbox}
+  \begin{adjustbox}{max width=\textwidth}\generated{table_profiles_B_k4.tex}\end{adjustbox}
 \end{table}
 
 \begin{figure}[H]
@@ -350,7 +363,7 @@ Mỗi điều kiện kiểm chứng bắt buộc được viết thành một h�
   \centering\small
   \caption{Kết quả kiểm chứng tự động.}
   \label{tab:checks}
-  \begin{adjustbox}{max width=\textwidth}\input{generated/table_pipeline_checks.tex}\end{adjustbox}
+  \begin{adjustbox}{max width=\textwidth}\generated{table_pipeline_checks.tex}\end{adjustbox}
 \end{table}
 
 %===========================================================================

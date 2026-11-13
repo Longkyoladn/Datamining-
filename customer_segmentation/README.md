@@ -53,4 +53,10 @@ xelatex ai_declaration.tex
 xelatex ai_declaration.tex
 ```
 
-Có thể biên dịch trên Overleaf: tải lên thư mục `reports/` (gồm `generated/`) và `figures/` với cùng cấu trúc tương đối, chọn trình biên dịch XeLaTeX.
+Trên Overleaf:
+
+1. Tải lên cả thư mục `customer_segmentation/` (ít nhất là `reports/` và `figures/`), giữ nguyên cấu trúc.
+2. Menu → Settings: **Compiler = XeLaTeX**, **Main document = `reports/report.tex`**.
+3. Recompile. Muốn biên dịch tệp khai báo thì đổi Main document sang `reports/ai_declaration.tex`.
+
+Báo cáo tìm tệp sinh tự động ở cả `generated/` lẫn `reports/generated/`, và tìm hình ở cả `../figures/` lẫn `figures/`. Vì vậy báo cáo chạy được cả khi biên dịch trong `reports/` trên máy, lẫn khi gốc dự án Overleaf là `customer_segmentation/`. Font chữ là TeX Gyre Termes, có sẵn trong TeX Live và Overleaf. Báo cáo không dùng `babel`, vì gói tiếng Việt của babel gây lỗi font với XeLaTeX.

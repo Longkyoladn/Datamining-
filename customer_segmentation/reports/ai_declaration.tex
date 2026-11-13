@@ -1,8 +1,8 @@
-% Khai báo sử dụng AI và công cụ. Biên dịch bằng XeLaTeX: xelatex ai_declaration.tex
+% Khai báo sử dụng AI và công cụ. Biên dịch bằng XeLaTeX: xelatex ai_declaration.tex (chạy hai lần).
 \documentclass[11pt,a4paper]{article}
 
+% Không dùng babel-vietnamese: gói này ép bảng mã T5 của pdfLaTeX, gây lỗi font với XeLaTeX.
 \usepackage{fontspec}
-\usepackage[vietnamese]{babel}
 \usepackage[margin=2.2cm]{geometry}
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -10,7 +10,15 @@
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
 
-\setmainfont{Latin Modern Roman}
+% Nạp font theo tên tệp (có sẵn trong TeX Live/Overleaf, đủ dấu tiếng Việt), không phụ thuộc fontconfig.
+\setmainfont{texgyretermes}[
+  Extension = .otf,
+  UprightFont = *-regular,
+  BoldFont = *-bold,
+  ItalicFont = *-italic,
+  BoldItalicFont = *-bolditalic]
+\renewcommand{\tablename}{Bảng}
+\setlength{\emergencystretch}{3em}
 \setlist{itemsep=2pt, topsep=4pt}
 \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 
