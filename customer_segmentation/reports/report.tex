@@ -79,7 +79,7 @@ Các vấn đề chất lượng dữ liệu được đưa vào theo thứ tự
 Sinh theo nhóm tiềm ẩn tạo ra quan hệ hợp lý giữa các biến và cho phép kiểm chứng phân cụm bằng ARI. Phân phối Lognormal và Negative Binomial phù hợp với tiền tệ lệch phải và với biến đếm có phương sai lớn hơn trung bình. Nhiễu tương đối được dùng cho chi tiêu vì biến này trải từ vài trăm đến hàng chục nghìn: một độ lệch chuẩn tuyệt đối chung sẽ làm biến dạng mạnh khách chi tiêu thấp, thậm chí tạo giá trị âm. Cơ chế MAR được chọn vì khách ít truy cập có ít sự kiện giỏ hàng để ghi nhận.
 
 \paragraph{Kết quả và nhận xét.}
-Mọi điều kiện của đề bài được kiểm tra bằng \texttt{assert} và đều thỏa. Trung bình theo nhóm thay đổi đúng hướng thiết kế (Hình~\ref{fig:segments}), nhưng các nhóm chồng lấn: silhouette của nhãn giả lập trên 10 thuộc tính số đã chuẩn hóa chỉ là \TrueSilhouette.
+Mọi điều kiện của đề bài được kiểm tra bằng \texttt{assert} và đều thỏa. Trung bình theo nhóm thay đổi đúng hướng thiết kế (Hình~\ref{fig:segments}), nhưng các nhóm chồng lấn: silhouette của nhãn giả lập trên \NNumericFeatures{} thuộc tính số đã chuẩn hóa chỉ là \TrueSilhouette.
 
 Tác động của nhiễu:
 \begin{itemize}
@@ -129,11 +129,11 @@ Không có bản ghi trùng lặp. Có \MissingRecords{} bản ghi (\MissingReco
   So với dữ liệu sạch, độ lệch chuẩn tăng \StdRatioSessions{} lần với số phiên và \StdRatioSpend{} lần với chi tiêu. Pearson giữa số đơn và chi tiêu giảm từ \PearOrigOrdersSpend{} xuống \PearOrdersSpend. Ngoại lai làm phồng std, nên chuẩn hóa z-score sẽ nén sự khác biệt giữa các khách bình thường.
 \end{enumerate}
 
-Khả năng phát hiện 12 ngoại lai được trình bày ở Bảng~\ref{tab:detection}:
+Khả năng phát hiện \OutlierIds{} ngoại lai được trình bày ở Bảng~\ref{tab:detection}:
 \begin{itemize}
   \item Quy tắc nghiệp vụ bắt đủ \OutlierError{} lỗi mà không đánh dấu nhầm bản ghi nào.
-  \item IQR với $k=1.5$ đánh dấu nhầm \DetIqrOneFalse{} bản ghi, chủ yếu do đuôi tự nhiên của recency và chi tiêu. IQR bỏ sót hai giá trị âm nhỏ vì chúng vẫn nằm trong râu.
-  \item Kết hợp quy tắc nghiệp vụ với IQR $k=3$ bắt đủ \DetCombTotal/12.
+  \item IQR với $k=1.5$ bắt được \DetIqrOneTotal/\OutlierIds{} và đánh dấu nhầm \DetIqrOneFalse{} bản ghi, chủ yếu do đuôi tự nhiên của recency và chi tiêu. Các ngoại lai mà IQR bỏ sót đều là giá trị âm nhỏ, vẫn nằm trong râu.
+  \item Kết hợp quy tắc nghiệp vụ với IQR $k=3$ bắt được \DetCombTotal/\OutlierIds.
 \end{itemize}
 
 \begin{table}[H]
@@ -225,7 +225,7 @@ Quy trình chỉ dùng \texttt{customers\_corrupted.csv}, gồm bốn bước:
 \end{itemize}
 
 \paragraph{Kết quả và nhận xét.}
-Ma trận cuối có kích thước $\NCustomers \times \FeatureDims$: $12 - 1 + (8 + 3 - 2) = \FeatureDims$ chiều. Ma trận không có NaN hay vô cực, và không chứa cột ID hay nhãn; được lưu trong \texttt{data/customers\_prepared.csv}, còn \texttt{customer\_id} lưu riêng trong \texttt{prepared\_customer\_ids.csv}.
+Ma trận cuối có kích thước $\NCustomers \times \FeatureDims$: $\NInputFeatures - \NDropped + (\NCategories + \NDevices - 2) = \FeatureDims$ chiều. Ma trận không có NaN hay vô cực, và không chứa cột ID hay nhãn; được lưu trong \texttt{data/customers\_prepared.csv}, còn \texttt{customer\_id} lưu riêng trong \texttt{prepared\_customer\_ids.csv}.
 
 Hai thành phần chính đầu tiên giải thích \PcaTwoPct\% phương sai, năm thành phần đầu giải thích \PcaFivePct\%. Trên mặt phẳng 2D không thấy cụm tách rời, phù hợp với thiết kế các nhóm chồng lấn.
 
@@ -249,7 +249,7 @@ Hai nhánh dùng cùng \FeatureDims{} đặc trưng, cùng thứ tự cột và 
 Số cụm được khảo sát với $k = 2,\dots,8$. Quy tắc đặt trước: chọn $k$ có Silhouette cao nhất trên nhánh B. Thí nghiệm bổ sung dùng $k=4$, lấy từ thiết kế giả lập. ARI với \texttt{true\_segment} chỉ được tính sau khi phân cụm. Ngoài ra có một dòng tham chiếu: dữ liệu gốc sạch đi qua cùng bộ biến đổi.
 
 \paragraph{Lựa chọn $k$.}
-Silhouette và Davies–Bouldin của nhánh B cùng tốt nhất ở $k=\KMain$ (Bảng~\ref{tab:ksurvey}); Elbow chỉ có một khuỷu yếu ở $k=4$. Ở nhánh A, mọi $k \ge 3$ đều có một cụm chỉ gồm 1 bản ghi (bản ghi có \texttt{return\_rate}~$=1.85$), khiến Silhouette và Davies–Bouldin của A đẹp bất thường ở $k=3$. Nếu chọn $k$ theo baseline, lựa chọn sẽ bị lỗi dữ liệu chi phối.
+Silhouette và Davies–Bouldin của nhánh B cùng tốt nhất ở $k=\KMain$ (Bảng~\ref{tab:ksurvey}); Elbow chỉ có một khuỷu yếu ở $k=4$. Ở nhánh A, mọi $k \ge 3$ đều có một cụm chỉ gồm 1 bản ghi (với $k=4$ là bản ghi có \texttt{return\_rate}~$=1.85$), khiến Silhouette và Davies–Bouldin của A đẹp bất thường ở $k=3$. Nếu chọn $k$ theo baseline, lựa chọn sẽ bị lỗi dữ liệu chi phối.
 
 \begin{table}[H]
   \centering\small

@@ -21,7 +21,8 @@ customer_segmentation/
 │   ├── clustering_metrics.csv       chỉ số của hai nhánh và tham chiếu sạch
 │   ├── cluster_profiles.csv         hồ sơ cụm, tên cụm
 │   ├── k_selection.csv              khảo sát k = 2..8
-│   ├── preprocessing_changes.csv    40 ô bị điều chỉnh ở câu c
+│   ├── preprocessing_changes.csv    các ô bị điều chỉnh ở câu c
+│   ├── cluster_labels.csv           nhãn cụm theo customer_id
 │   └── pipeline_checks.csv          kết quả kiểm chứng tự động
 ├── reports/
 │   ├── report.tex                   báo cáo (XeLaTeX)
