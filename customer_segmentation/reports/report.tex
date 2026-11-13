@@ -249,7 +249,7 @@ Hai nhánh dùng cùng \FeatureDims{} đặc trưng, cùng thứ tự cột và 
 Số cụm được khảo sát với $k = 2,\dots,8$. Quy tắc đặt trước: chọn $k$ có Silhouette cao nhất trên nhánh B. Thí nghiệm bổ sung dùng $k=4$, lấy từ thiết kế giả lập. ARI với \texttt{true\_segment} chỉ được tính sau khi phân cụm. Ngoài ra có một dòng tham chiếu: dữ liệu gốc sạch đi qua cùng bộ biến đổi.
 
 \paragraph{Lựa chọn $k$.}
-Silhouette và Davies–Bouldin của nhánh B cùng tốt nhất ở $k=\KMain$ (Bảng~\ref{tab:ksurvey}); Elbow chỉ có một khuỷu yếu ở $k=4$. Ở nhánh A, mọi $k \ge 3$ đều có một cụm chỉ gồm 1 bản ghi (với $k=4$ là bản ghi có \texttt{return\_rate}~$=1.85$), khiến Silhouette và Davies–Bouldin của A đẹp bất thường ở $k=3$. Nếu chọn $k$ theo baseline, lựa chọn sẽ bị lỗi dữ liệu chi phối.
+Silhouette và Davies–Bouldin của nhánh B cùng tốt nhất ở $k=\KMain$ (Bảng~\ref{tab:ksurvey}); inertia giảm đều, không có điểm gãy rõ, mức giảm chỉ nhỏ lại sau $k=\KDesign$. Ở nhánh A, mọi $k \ge 3$ đều có một cụm chỉ gồm 1 bản ghi (với $k=\KDesign$ là bản ghi có \texttt{return\_rate}~$>1$), khiến Silhouette và Davies–Bouldin của A đẹp bất thường ở $k=3$. Nếu chọn $k$ theo baseline, lựa chọn sẽ bị lỗi dữ liệu chi phối.
 
 \begin{table}[H]
   \centering\small
@@ -286,7 +286,7 @@ Silhouette và Davies–Bouldin của nhánh B cùng tốt nhất ở $k=\KMain$
 \paragraph{Phân tích cụm.}
 Hồ sơ cụm được tính trên dữ liệu nghiệp vụ đã tiền xử lý, không dùng giá trị chuẩn hóa (Bảng~\ref{tab:k2}, \ref{tab:k4}). Tên cụm đặt theo hành vi của các thành viên.
 
-Với $k=2$, cụm thứ hai gộp các kiểu khách cần cách tiếp cận khác nhau, nên phân chia này quá thô cho tiếp thị. Với $k=4$, bốn cụm có ý nghĩa hành động rõ ràng hơn.
+Với $k=\KMain$, cụm thứ hai gộp các kiểu khách cần cách tiếp cận khác nhau, nên phân chia này quá thô cho tiếp thị. Với $k=\KDesign$, bốn cụm có ý nghĩa hành động rõ ràng hơn.
 
 Ở nhánh A, hồ sơ cụm bị lỗi làm méo: hai lỗi chi tiêu $\times 100$ và giá trị 999 phiên làm tăng giá trị trung bình của cụm chứa chúng. Lỗi trong \texttt{total\_spend\_6m} không ảnh hưởng việc gán cụm (vì cột này không nằm trong tập đặc trưng), nhưng làm sai thông tin dùng để ra quyết định.
 
@@ -294,7 +294,7 @@ Với $k=2$, cụm thứ hai gộp các kiểu khách cần cách tiếp cận k
   \centering\small
   \caption{Hồ sơ cụm nhánh B, $k=\KMain$ (tiền: nghìn đồng; giảm giá, bỏ giỏ: tỷ lệ trung bình).}
   \label{tab:k2}
-  \begin{adjustbox}{max width=\textwidth}\input{generated/table_profiles_B_k2.tex}\end{adjustbox}
+  \begin{adjustbox}{max width=\textwidth}\input{generated/table_profiles_B_main.tex}\end{adjustbox}
 \end{table}
 
 \begin{table}[H]

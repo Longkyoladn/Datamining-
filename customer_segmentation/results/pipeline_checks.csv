@@ -10,4 +10,4 @@ check,status,detail
 "9. Same feature space, column order and scaling in both branches",PASS,20 identical columns; 184 records with identical raw values map identically
 "10. CSV files, figures and result tables saved",PASS,"11 CSV files, 11 figures, 6 generated LaTeX files present and non-empty"
 11. Re-run with the same seed reproduces data and clusters,PASS,simulation regenerated with seed 42 matches saved CSV/metadata; K-Means labels identical on refit for 3 matrices x 2 experiments
-12. Report values generated from and matching experiment results,PASS,81 macros used in report.tex all defined; 23 values recomputed from saved files match; 14 qualitative claims hold
+12. Report values generated from and matching experiment results,PASS,82 macros used in report.tex all defined; 33 values match saved files; 16 qualitative claims hold (11 recomputed from saved files)

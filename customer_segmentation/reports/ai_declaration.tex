@@ -86,7 +86,7 @@ Bỏ \texttt{total\_spend\_6m}; log1p; RobustScaler; OneHotEncoder; PCA để tr
 Tách bộ biến đổi thành fit/transform dùng chung cho hai nhánh; khảo sát $k$; K-Means hai nhánh và tham chiếu sạch; ARI sau phân cụm; hồ sơ cụm, đặt tên, chiến lược tiếp thị. & \texttt{0760e36} \\
 \addlinespace
 9 & Yêu cầu kiểm tra pipeline theo mục 11, viết báo cáo LaTeX, tệp khai báo riêng, sau đó chạy \texttt{/code-review} và rà soát. &
-Thêm 12 hàm kiểm chứng vào notebook; sinh macro và bảng LaTeX từ kết quả; sửa một giá trị làm tròn sai trong nhận xét câu e (1.897 $\rightarrow$ 1.896); viết \texttt{report.tex}, tệp này và \texttt{README.md}; chạy rà soát mã (Mục~\ref{sec:review}). & (commit cuối) \\
+Thêm 12 hàm kiểm chứng vào notebook; sinh macro và bảng LaTeX từ kết quả; sửa một giá trị làm tròn sai trong nhận xét câu e (1.897 $\rightarrow$ 1.896); viết \texttt{report.tex}, tệp này và \texttt{README.md}; chạy hai vòng rà soát mã và sửa các phát hiện (Mục~\ref{sec:review}). & \texttt{5b244f7}, \texttt{b80e3f6}, commit cuối \\
 \bottomrule
 \end{longtable}
 
@@ -120,7 +120,32 @@ LaTeX & Máy thực hiện không có trình biên dịch LaTeX. Các tệp \tex
 \section{Kết quả rà soát mã}
 \label{sec:review}
 
-% Mục này được cập nhật sau khi chạy /code-review.
-Đang cập nhật.
+Sinh viên yêu cầu chạy \texttt{/code-review} với tham số \texttt{-mode 5.6 sol - maxround 2}. Công cụ rà soát của Claude Code không định nghĩa các tham số \texttt{-mode} và \texttt{sol}, nên rà soát chạy ở mức mặc định (đọc mã, không chạy thử trên dữ liệu thay đổi). Giới hạn hai vòng được áp dụng: rà soát $\rightarrow$ sửa $\rightarrow$ rà soát lại $\rightarrow$ sửa, không có vòng thứ ba.
+
+\subsection*{Vòng 1 — rà soát commit \texttt{5b244f7} (10 phát hiện, sửa ở \texttt{b80e3f6})}
+\begin{itemize}
+  \item Bảng kiểm chứng luôn ghi PASS; một kiểm tra lỗi làm dừng cell và để lại bảng PASS cũ. \emph{Sửa:} ghi nhận FAIL, luôn ghi bảng trước khi báo lỗi.
+  \item Notebook lỗi khi $k$ chính trùng $k=4$. \emph{Sửa:} luôn chạy thí nghiệm $k=4$.
+  \item Kích thước cụm nhỏ nhất hiển thị dạng số thực trong bảng khảo sát $k$. \emph{Sửa:} ép kiểu số nguyên.
+  \item Báo cáo còn số liệu và nhận định gõ tay. \emph{Sửa:} thay bằng macro; thêm kiểm tra tự động cho các nhận định định tính.
+  \item Tiêu đề bảng phát hiện ghi cứng số lượng và gán theo vị trí cột. \emph{Sửa:} đổi tên theo tên cột, số lượng lấy từ tham số.
+  \item Kiểm tra 12 chỉ đối chiếu một phần macro và gần như vòng tròn. \emph{Sửa:} lưu nhãn cụm, tính lại các chỉ số từ tệp đã lưu, kiểm tra mọi macro dùng trong báo cáo đã được định nghĩa.
+  \item Kiểm tra tái lập bỏ qua nhánh tham chiếu sạch; kiểm tra lưu tệp thiếu một số tệp; \texttt{latex\_escape} chưa đầy đủ; một số phép tính lặp và chuỗi ghi cứng. \emph{Sửa:} bổ sung tương ứng.
+\end{itemize}
+
+\subsection*{Vòng 2 — rà soát commit \texttt{b80e3f6} (10 phát hiện, sửa ở commit cuối)}
+\begin{itemize}
+  \item Kiểm tra nhận định định tính dùng \texttt{assert} trước khi ghi tệp, nên vẫn có thể để lại bảng PASS cũ. \emph{Sửa:} chỉ ghi nhận, kết quả FAIL được ghi ở kiểm tra 12 sau khi mọi tệp đã được ghi.
+  \item Nhận định được kiểm tra trên dữ liệu trong bộ nhớ (luôn đúng). \emph{Sửa:} các nhận định về phân cụm được tính lại từ tệp đã lưu.
+  \item Macro Silhouette/Davies–Bouldin không còn được đối chiếu. \emph{Sửa:} đối chiếu toàn bộ với \texttt{clustering\_metrics.csv} và tính lại Davies–Bouldin của nhánh B từ tệp.
+  \item Trường hợp $k$ chính bằng 4 vẫn làm nhận định so sánh thất bại. \emph{Xử lý:} khi đó văn bản báo cáo không còn đúng, và kiểm tra 12 ghi FAIL (không còn dừng notebook trước khi ghi tệp).
+  \item Báo cáo còn ghi cứng ``$k=2$'', tên bản ghi tạo cụm 1 phần tử, và mô tả Elbow chưa khớp với điều kiện kiểm tra. \emph{Sửa:} dùng macro \texttt{KMain}/\texttt{KDesign}; thêm nhận định $k$ chính bằng 2 và nhận định cụm 1 phần tử là bản ghi có tỷ lệ hoàn trả $>1$; viết lại câu về Elbow cho khớp điều kiện.
+  \item Biểu thức tìm macro bắt nhầm lệnh LaTeX chuẩn viết hoa và phần chú thích. \emph{Sửa:} bỏ chú thích, loại các lệnh chuẩn.
+  \item Nhãn cụm của tham chiếu sạch được ghép theo vị trí dòng mà không kiểm tra thứ tự. \emph{Sửa:} \texttt{assert} thứ tự \texttt{customer\_id} trùng nhau.
+  \item Độ lệch chuẩn nhiễu dạng số bị trộn vào dict mô tả. \emph{Sửa:} trả về thành giá trị riêng.
+\end{itemize}
+
+\subsection*{Kiểm chứng sau rà soát}
+Sau vòng 2, notebook được chạy lại hai lần: 12/12 kiểm tra đạt, 16/16 nhận định định tính đúng, và 19 tệp dữ liệu, kết quả, LaTeX sinh ra trùng khớp giữa hai lần chạy. Đường ghi FAIL được thử bằng cách tạm thêm một macro không tồn tại vào \texttt{report.tex}: kiểm tra 12 ghi FAIL kèm lý do, và cả tệp CSV lẫn bảng LaTeX đều được cập nhật. Sau khi khôi phục \texttt{report.tex}, chạy lại cho 12/12 đạt. Các trường hợp dữ liệu khác (seed khác, tham số khác) chưa được chạy thử.
 
 \end{document}
